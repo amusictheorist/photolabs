@@ -1,1 +1,0 @@
-Array.from(Array(3)).map((_, index) => <PhotoListItem key={index}/>)
