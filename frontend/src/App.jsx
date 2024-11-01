@@ -3,7 +3,7 @@ import PhotoListItem from './components/PhotoListItem';
 import './App.scss';
 
 const App = () => {
-  const sampleDataForPhotoListItem = {
+  const photo = {
     id: "1",
     location: {
       city: "Montreal",
@@ -13,10 +13,13 @@ const App = () => {
     username: "Joe Example",
     profile: `${process.env.PUBLIC_URL}/profile-1.jpg`,
   };
+  const photos = new Array(3);
  
   return (
     <div className="App">
-    <PhotoListItem photo={sampleDataForPhotoListItem}/>
+      {photos.map((_, i) => (
+    <PhotoListItem key={i} photo={photo} />
+      ))}
     </div>
   );
 };
