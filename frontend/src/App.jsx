@@ -14,10 +14,12 @@ const App = () => {
     username: "Joe Example",
     profile: `${process.env.PUBLIC_URL}/profile-1.jpg`,
   };
+  const photos = [...Array(3)];
+  const photoListItems = photos.map((photo, i) => <PhotoListItem key={i} photo={photo} />);
 
   return (
     <div className="App">
-      <PhotoListItem photo={photo}/>
+      {photoListItems}
     </div>
   );
 };

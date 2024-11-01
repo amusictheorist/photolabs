@@ -18,4 +18,4 @@ const PhotoListItem = (props) => {
   );
 };
 
-export default PhotoListItem;
+export default PhotoListItem; 
