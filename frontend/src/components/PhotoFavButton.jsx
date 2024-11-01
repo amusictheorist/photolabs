@@ -6,12 +6,14 @@ function PhotoFavButton() {
   const [like, setLike] = useState(false);
 
   const handleClick = () => {
-    setLike((currentLike) => !currentLike);
+    setLike(!like);
   };
 
+  const iconClass = like ? 'photo-list__fav-icon-svg' : 'photo-list__fav-icon';
+
   return (
-    <div className="photo-list__fav-icon" onClick={handleClick}>
-      <FavIcon className={like ? "liked" : "unliked"} />
+    <div className={iconClass}>
+      <FavIcon onClick={handleClick} liked={like} />
     </div>
   );
 }
