@@ -4,7 +4,7 @@ import './App.scss';
 
 // Note: Rendering a single component to build components in isolation
 const App = () => {
-  const sampleDataForPhotoListItem = {
+  const photo = {
     id: "1",
     location: {
       city: "Montreal",
@@ -17,7 +17,7 @@ const App = () => {
 
   return (
     <div className="App">
-      <PhotoListItem photo={sampleDataForPhotoListItem}/>
+      <PhotoListItem photo={photo}/>
     </div>
   );
 };
