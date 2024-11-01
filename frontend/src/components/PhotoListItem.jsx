@@ -1,17 +1,18 @@
 import React from "react";
+import '../styles/PhotoListItem.scss';
 
 const PhotoListItem = (props) => {
   const photo = props.photo;
   
   return (
-    <div>
+    <div className="photo-list__item">
       <img src={photo.imageSource} alt="user's photo" />
-      <div>
+      <div className="photo-list_user-profile">
         <img src={photo.profile} alt="user's profile" />
-        <div>
+        <div className="photo-list_user-info">
         <span>{photo.username}</span>
         </div>
-        <div>
+        <div className="photo-list__user-location">
         <span>{photo.location.city}, {photo.location.country}</span>
         </div>
       </div>
