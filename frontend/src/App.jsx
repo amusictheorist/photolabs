@@ -1,14 +1,14 @@
 import React from 'react';
 import PhotoList from 'components/PhotoList';
+import TopNavigationBar from 'components/TopNavigationBar';
 import './App.scss';
-import TopicList from 'components/TopicList';
 
 const App = () => {
  
   return (
     <div className="App">
     {/* { Array.from(Array(3)).map((_, index) => <PhotoListItem key={index}/>) } */}
-    <TopicList />
+    <TopNavigationBar />
     <PhotoList />
   </div>
   );
