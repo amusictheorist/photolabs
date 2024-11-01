@@ -5,18 +5,16 @@ const PhotoListItem = (props) => {
   const sampleDataForPhotoListItem = props.photo;
 
   return (
-<div className="photo-list__item">
-  <img src={sampleDataForPhotoListItem.imageSource} alt="test image" />
-  <img src={sampleDataForPhotoListItem.profile} alt="profile pic" />
-  
-  <div className="photo-details">
-    <span>{sampleDataForPhotoListItem.username}</span>
-  </div>
-  
-  <div className="photo-location">
-    <span>{sampleDataForPhotoListItem.location.city}, {sampleDataForPhotoListItem.location.country}</span>
-  </div>
-</div>
+    <div className="photo-list__item">
+      <img src={sampleDataForPhotoListItem.imageSource} alt="user's photo" />
+      <div className="photo-list__user-details">
+        <img src={sampleDataForPhotoListItem.profile} alt="user's profile picture" />
+      </div>
+      <div className="photo-list__user-info">
+        <div>{sampleDataForPhotoListItem.username}</div>
+        <div className="photo-list__user-location">{sampleDataForPhotoListItem.location.city}, {sampleDataForPhotoListItem.location.country}</div>
+      </div>
+    </div>
   );
 };
 
