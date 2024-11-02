@@ -3,12 +3,11 @@ import '../styles/PhotoListItem.scss';
 import FavIcon from "./FavIcon";
 import PhotoFavButton from "./PhotoFavButton";
 
-const PhotoListItem = (props) => {
-  const photo = props.photo;
+const PhotoListItem = ({ photo, isFavorited, onToggleFavorite }) => {
   
   return (
     <div className="photo-list__item">
-      <PhotoFavButton />
+      <PhotoFavButton isFavorited={isFavorited} onClick={onToggleFavorite} />
       <img className="photo-list__image" src={photo.urls.regular} alt="user's photo" />
       <div className="photo-list__user-details">
         <img className="photo-list__user-profile" src={photo.user.profile} alt="user's profile" />
@@ -21,6 +20,6 @@ const PhotoListItem = (props) => {
       </div>
     </div>
   );
-}
+};
 
 export default PhotoListItem;
