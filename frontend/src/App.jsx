@@ -8,6 +8,7 @@ import topics from 'mocks/topics';
 const App = () => {
   const [favoritedPhotos, setFavoritedPhotos] = useState([]);
   const [displayModal, setDisplayModal] = useState(false);
+  const [activePhoto, setActivePhoto] = useState(null);
 
   const toggleFavorite = (photoId) => {
     setFavoritedPhotos((prevFavorites) => {
@@ -19,8 +20,14 @@ const App = () => {
     });
   };
 
-  const toggleModal= () => {
+  const toggleModal = () => {
     setDisplayModal(!displayModal);
+  };
+
+  const openModalWithPhoto = (photo) => {
+    console.log(photo);
+    setDisplayModal(!displayModal);
+    setActivePhoto(photo);
   };
  
   return (
@@ -30,9 +37,9 @@ const App = () => {
       topics={topics}
       favoritedPhotos={favoritedPhotos}
       toggleFavorite={toggleFavorite}
-      toggleModal={toggleModal}
+      openModalWithPhoto={openModalWithPhoto}
       />
-      {displayModal && <PhotoDetailsModal toggleModal={toggleModal}/>}
+      {displayModal && <PhotoDetailsModal photo={activePhoto} toggleModal={toggleModal}/>}
   </div>
   );
 };
