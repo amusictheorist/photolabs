@@ -25,7 +25,6 @@ const App = () => {
   };
 
   const openModalWithPhoto = (photo) => {
-    console.log(photo);
     setDisplayModal(!displayModal);
     setActivePhoto(photo);
   };
@@ -39,7 +38,13 @@ const App = () => {
       toggleFavorite={toggleFavorite}
       openModalWithPhoto={openModalWithPhoto}
       />
-      {displayModal && <PhotoDetailsModal photo={activePhoto} toggleModal={toggleModal}/>}
+      {displayModal &&
+      <PhotoDetailsModal
+      photo={activePhoto}
+      toggleModal={toggleModal}
+      favoritedPhotos={favoritedPhotos}
+      toggleFavorite={toggleFavorite}
+      />}
   </div>
   );
 };
