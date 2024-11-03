@@ -13,7 +13,9 @@ const App = () => {
     activePhoto,
     displayModal,
     photoData,
-    topicData
+    topicData,
+    loading,
+    error
   } = useApplicationData();
  
   return (
@@ -24,6 +26,8 @@ const App = () => {
         favoritedPhotos={favoritedPhotos}
         toggleFavorite={toggleFavorite}
         openModalWithPhoto={openModalWithPhoto}
+        loading={loading}
+        error={error}
       />
       {displayModal &&
       <PhotoDetailsModal
