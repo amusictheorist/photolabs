@@ -3,7 +3,6 @@ import '../styles/PhotoDetailsModal.scss'
 import closeSymbol from '../assets/closeSymbol.svg';
 import PhotoListItem from 'components/PhotoListItem';
 import PhotoList from 'components/PhotoList';
-import PhotoFavButton from 'components/PhotoFavButton';
 
 const PhotoDetailsModal = ({ toggleModal, photo, favoritedPhotos, toggleFavorite, isFavorited, onToggleFavorite }) => {
   const similarPhotos = photo.similar_photos;

@@ -4,46 +4,32 @@ import HomeRoute from 'routes/HomeRoute';
 import PhotoDetailsModal from 'routes/PhotoDetailsModal';
 import photos from 'mocks/photos';
 import topics from 'mocks/topics';
+import useApplicationData from 'hooks/useApplicationData';
 
 const App = () => {
-  const [favoritedPhotos, setFavoritedPhotos] = useState([]);
-  const [displayModal, setDisplayModal] = useState(false);
-  const [activePhoto, setActivePhoto] = useState(null);
-
-  const toggleFavorite = (photoId) => {
-    setFavoritedPhotos((prevFavorites) => {
-      if (prevFavorites.includes(photoId)) {
-        return prevFavorites.filter((id) => id !== photoId);
-      } else {
-        return [...prevFavorites, photoId];
-      }
-    });
-  };
-
-  const toggleModal = () => {
-    setDisplayModal(!displayModal);
-  };
-
-  const openModalWithPhoto = (photo) => {
-    setDisplayModal(!displayModal);
-    setActivePhoto(photo);
-  };
+  const {
+    toggleFavorite,
+    toggleModal,
+    openModalWithPhoto,
+    favoritedPhotos,
+    activePhoto,
+    displayModal} = useApplicationData();
  
   return (
     <div className="App">
       <HomeRoute
-      photos={photos}
-      topics={topics}
-      favoritedPhotos={favoritedPhotos}
-      toggleFavorite={toggleFavorite}
-      openModalWithPhoto={openModalWithPhoto}
+        photos={photos}
+        topics={topics}
+        favoritedPhotos={favoritedPhotos}
+        toggleFavorite={toggleFavorite}
+        openModalWithPhoto={openModalWithPhoto}
       />
       {displayModal &&
       <PhotoDetailsModal
-      photo={activePhoto}
-      toggleModal={toggleModal}
-      favoritedPhotos={favoritedPhotos}
-      toggleFavorite={toggleFavorite}
+        photo={activePhoto}
+        toggleModal={toggleModal}
+        favoritedPhotos={favoritedPhotos}
+        toggleFavorite={toggleFavorite}
       />}
   </div>
   );
