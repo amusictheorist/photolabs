@@ -1,8 +1,8 @@
 import React from "react";
-import "../styles/PhotoList.scss";
+import "../styles/PhotoList.scss"; // Make sure this is necessary
 import PhotoListItem from "./PhotoListItem";
 
-const PhotoList = ({ photos, favoritedPhotos, toggleFavorite, openModalWithPhoto }) => (
+const PhotoList = ({ photos, favoritedPhotos, toggleFavorite, openModalWithPhoto, fetchPhotosByTopic }) => (
   <ul className="photo-list">
     {photos.map((photo) => (
       <PhotoListItem
@@ -11,6 +11,7 @@ const PhotoList = ({ photos, favoritedPhotos, toggleFavorite, openModalWithPhoto
         isFavorited={favoritedPhotos.includes(photo.id)}
         onToggleFavorite={() => toggleFavorite(photo.id)}
         openModalWithPhoto={openModalWithPhoto}
+        fetchPhotosByTopic={fetchPhotosByTopic}
       />
     ))}
   </ul>

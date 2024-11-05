@@ -9,6 +9,7 @@ const App = () => {
     toggleFavorite,
     toggleModal,
     openModalWithPhoto,
+    fetchPhotosByTopic,
     favoritedPhotos,
     activePhoto,
     displayModal,
@@ -17,7 +18,7 @@ const App = () => {
     loading,
     error
   } = useApplicationData();
- 
+
   return (
     <div className="App">
       <HomeRoute
@@ -28,15 +29,18 @@ const App = () => {
         openModalWithPhoto={openModalWithPhoto}
         loading={loading}
         error={error}
+        fetchPhotosByTopic={fetchPhotosByTopic}
       />
-      {displayModal &&
-      <PhotoDetailsModal
-        photo={activePhoto}
-        toggleModal={toggleModal}
-        favoritedPhotos={favoritedPhotos}
-        toggleFavorite={toggleFavorite}
-      />}
-  </div>
+      {displayModal && (
+        <PhotoDetailsModal
+          photo={activePhoto}
+          toggleModal={toggleModal}
+          favoritedPhotos={favoritedPhotos}
+          toggleFavorite={toggleFavorite}
+          fetchPhotosByTopic={fetchPhotosByTopic}
+        />
+      )}
+    </div>
   );
 };
 

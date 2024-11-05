@@ -1,4 +1,3 @@
-import { type } from "@testing-library/user-event/dist/type";
 import { useReducer, useEffect } from "react";
 
 const initialState = {
@@ -7,8 +6,9 @@ const initialState = {
   activePhoto: null,
   photoData: [],
   topicData: [],
+  topicId: 0,
   loading: true,
-  error: null
+  error: null,
 };
 
 export const ACTIONS = {
@@ -17,33 +17,33 @@ export const ACTIONS = {
   OPEN_MODAL_WITH_PHOTO: 'OPEN_MODAL_WITH_PHOTO',
   SET_PHOTO_DATA: 'SET_PHOTO_DATA',
   SET_TOPICS_DATA: 'SET_TOPICS_DATA',
+  GET_PHOTOS_BY_TOPICS: 'GET_PHOTOS_BY_TOPICS',
   SET_LOADING: 'SET_LOADING',
   SET_ERROR: 'SET_ERROR',
-  GET_PHOTOS_BY_TOPICS: 'GET_PHOTOS_BY_TOPICS'
 };
 
 const reducer = (state, action) => {
   switch (action.type) {
-    case "TOGGLE_FAVORITE":
+    case ACTIONS.TOGGLE_FAVORITE:
       return {
         ...state,
         favoritedPhotos: state.favoritedPhotos.includes(action.photoId)
           ? state.favoritedPhotos.filter((id) => id !== action.photoId)
           : [...state.favoritedPhotos, action.photoId],
       };
-    case "TOGGLE_MODAL":
-      return { ...state, displayModal: !state.displayModal, };
-    case "OPEN_MODAL_WITH_PHOTO":
-      return { ...state, displayModal: true, activePhoto: action.photo, };
-    case 'SET_PHOTO_DATA':
-      return { ... state, photoData: action.payload, loading: false };
-    case 'SET_TOPICS_DATA':
+    case ACTIONS.TOGGLE_MODAL:
+      return { ...state, displayModal: !state.displayModal };
+    case ACTIONS.OPEN_MODAL_WITH_PHOTO:
+      return { ...state, displayModal: true, activePhoto: action.photo };
+    case ACTIONS.SET_PHOTO_DATA:
+      return { ...state, photoData: action.payload, loading: false };
+    case ACTIONS.SET_TOPICS_DATA:
       return { ...state, topicData: action.payload, loading: false };
-    case 'SET_LOADING':
+    case ACTIONS.SET_LOADING:
       return { ...state, loading: action.payload };
-    case 'SET_ERROR':
+    case ACTIONS.SET_ERROR:
       return { ...state, error: action.payload, loading: false };
-    case 'GET_PHOTOS_BY_TOPICS':
+    case ACTIONS.GET_PHOTOS_BY_TOPICS:
       return { ...state, photoData: action.payload, loading: false };
     default:
       return state;
@@ -89,29 +89,30 @@ const useApplicationData = () => {
       });
   }, []);
 
-  useEffect(() => {
+  const fetchPhotosByTopic = (topicId) => {
     dispatch({ type: ACTIONS.SET_LOADING, payload: true });
-    fetch("http://localhost:8001/api/topics/photos/:topic_id")
-    .then((response) => response.json())
-    .then((data) => {
-      dispatch({ type: ACTIONS.GET_PHOTOS_BY_TOPICS, payload: data });
-    })
-    .catch((error) => {
-      dispatch({ type: ACTIONS.SET_ERROR, payload: error.message });
-    });
-  }, []);
+    fetch(`/api/topics/photos/${topicId}`)
+      .then((response) => response.json())
+      .then((data) => {
+        dispatch({ type: ACTIONS.GET_PHOTOS_BY_TOPICS, payload: data });
+      })
+      .catch((error) => {
+        dispatch({ type: ACTIONS.SET_ERROR, payload: error.message });
+      });
+  };
 
   return {
     toggleFavorite,
     toggleModal,
     openModalWithPhoto,
+    fetchPhotosByTopic,
     favoritedPhotos: state.favoritedPhotos,
     activePhoto: state.activePhoto,
     displayModal: state.displayModal,
     photoData: state.photoData,
     topicData: state.topicData,
     loading: state.loading,
-    error: state.error
+    error: state.error,
   };
 };
 
