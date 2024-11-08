@@ -38,6 +38,7 @@ const App = () => {
           favoritedPhotos={favoritedPhotos}
           toggleFavorite={toggleFavorite}
           fetchPhotosByTopic={fetchPhotosByTopic}
+          openModalWithPhoto={openModalWithPhoto}
         />
       )}
     </div>

@@ -10,7 +10,7 @@ const TopicListItem = ({ topic, fetchPhotosByTopic }) => {
 
   return (
     <div className="topic-list__item" onClick={handleClick}>
-      {topic.title}
+      <span>{topic.title}</span>
     </div>
   );
 };
