@@ -6,7 +6,7 @@ import FavBadge from './FavBadge';
 const TopNavigation = ({ favoritedPhotos, topics, fetchPhotosByTopic }) => {
   const isFavPhotoExist = favoritedPhotos.length > 0;
 
-  return (
+    return (
     <header className="top-nav-bar">
       <span className="top-nav-bar__logo">PhotoLabs</span>
       <TopicList topics={topics} fetchPhotosByTopic={fetchPhotosByTopic} />

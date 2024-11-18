@@ -100,7 +100,6 @@ const useApplicationData = () => {
         dispatch({ type: ACTIONS.SET_ERROR, payload: error.message });
       });
   };
-
   return {
     toggleFavorite,
     toggleModal,
